@@ -1,0 +1,84 @@
+<html>
+<head>
+    <style>
+        td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+            height: 50px;
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="div">
+        <font size="8" color="green">Final test lab</font><br><br>
+        
+        
+            Number of rows: <input type="text" id="t1" /><br><br>
+            Number of cols: <input type="text" id="t2" /><br><br>
+        
+        <button id="b1" onclick="generateTable()">Generate Table</button><br><br>
+    </div>
+    <button id="b2" onclick="addColumn()">Add Column</button>
+    <button id="b3" onclick="addRow()">Add Row</button>
+
+    <div id="tableContainer"></div>
+
+	<script>
+		// Function to generate a table based on user input
+		const generateTable = () => {
+			// Get the number of rows and columns from user input
+			const rows = parseInt(document.getElementById('t1').value);
+			const cols = parseInt(document.getElementById('t2').value);
+	
+			// Create a table element
+			const table = document.createElement('table');
+			table.setAttribute('id', 'myTable');
+	
+			// Loop to create rows and cells based on input
+			for (let i = 0; i < rows; i++) {
+				const row = table.insertRow(); // Create a new row
+				for (let j = 0; j < cols; j++) {
+					const cell = row.insertCell(); // Create cells within each row
+				}
+			}
+	
+			// Clear existing table container and display the generated table
+			document.getElementById('tableContainer').innerHTML = '';
+			document.getElementById('tableContainer').appendChild(table);
+			document.getElementById('div').style.display = 'none'; // Hide the input section
+		};
+	
+		// Function to add a column to the table
+		const addColumn = () => {
+			const table = document.getElementById('myTable');
+			if (table) {
+				const rows = table.rows;
+				for (let i = 0; i < rows.length; i++) {
+					const cell = rows[i].insertCell(); // Insert new cell in each row
+				}
+			}
+		};
+	
+		// Function to add a row to the table
+		const addRow = () => {
+			const table = document.getElementById('myTable');
+			if (table) {
+				const newRow = table.insertRow(); // Insert a new row
+				const cols = table.rows[0].cells.length;
+	
+				// Create cells for the new row based on the existing columns
+				for (let i = 0; i < cols; i++) {
+					const cell = newRow.insertCell(); // Insert cell in the new row
+				}
+			}
+		};
+	</script>
+	
+</body>
+</html>
